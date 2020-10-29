@@ -1,0 +1,9 @@
+kind: Endpoints
+apiVersion: v1
+metadata:
+ name: gitlab-runner-ep
+subsets:
+ - addresses:
+     - ip: x.x.x.x
+   ports:
+     - port: 443

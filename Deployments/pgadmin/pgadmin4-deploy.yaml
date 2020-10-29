@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pgadmin4
+spec:
+  selector:
+    matchLabels:
+      proyecto: pgadmin4
+      tipo: db
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        proyecto: pgadmin4
+        tipo: db
+    spec:
+      containers:
+      - name: pgadmin4
+        image: dpage/pgadmin4
+        ports:
+        - containerPort: 8080
+        env:
+        - name: PGADMIN_DEFAULT_EMAIL
+          value: "email@email.com"
+        - name: PGADMIN_LISTEN_ADDRESS
+          value: "0.0.0.0"
+        - name: PGADMIN_DEFAULT_PASSWORD
+          value: "password"
+        - name: PGADMIN_LISTEN_PORT  
+          value: "8080"

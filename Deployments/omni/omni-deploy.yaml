@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:	
+  name: omni-db
+spec:
+  selector:
+    matchLabels:
+      proyecto: omni-db
+      tipo: db
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        proyecto: omni-db
+        tipo: db
+    spec:
+      securityContext:
+        fsGroup: 999
+      containers:
+      - name: omni-db
+        image: taivokasper/omnidb
+        ports:
+        - containerPort: 8080
+        - containerPort: 25842
+        volumeMounts:
+        - name: omni-db-pvc
+          mountPath: "/etc/omnidb"
+      nodeSelector:
+        nodeTipo: db
+      volumes:
+      - name: omni-db-pvc
+        persistentVolumeClaim:
+          claimName: omni-db-pvc

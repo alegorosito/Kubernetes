@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: pgadmin-svc
+spec:
+  type: NodePort
+  selector:
+    proyecto: pgadmin4
+    tipo: db
+  ports:
+    - protocol: TCP
+      nodePort: 3000X
+      port: 3000X
+      targetPort: 8080
+

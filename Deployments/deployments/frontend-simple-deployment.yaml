@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {nombre-proyecto}
+spec:
+  selector:
+    matchLabels:
+      proyecto: {nombre-proyecto}
+      tipo: frontend
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        proyecto: {nombre-proyecto}
+        tipo: frontend
+    spec:
+      containers:
+      - name: {nombre-imagen}
+        image: {repo}/{nombre-imagen}:#{Build.BuildId}#
+        ports:
+        - containerPort: 80
+      imagePullSecrets:
+        - name: marandu-reg
+      nodeSelector:
+        nodeTipo: frontend

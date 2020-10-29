@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: omni-db
+spec:
+  capacity:
+    storage: 1Gi
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteMany
+  nfs:
+    server: x.x.x.x
+    path: "/nfs/path/"
+  mountOptions:
+    - hard
+    - nfsvers=4.1

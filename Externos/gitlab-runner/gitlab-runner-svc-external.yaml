@@ -1,0 +1,12 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: gitlab-runner
+spec:
+  ports:
+    -
+      name: gitlab-runner
+      protocol: TCP
+      port: 443
+      targetPort: 443
+      nodePort: 0
